@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="page.top">
+            <block class="Aheadworks\Rbslider\Block\Banner" name="banner_category_menu_top" as="banner_category_menu_top" before="navigation.sections">
+                <arguments>
+                    <!-- Menu top -->
+                    <argument name="block_position" xsi:type="string">1</argument>
+                    <!-- Category Page -->
+                    <argument name="block_type" xsi:type="string">3</argument>
+                </arguments>
+            </block>
+            <block class="Aheadworks\Rbslider\Block\Banner" name="banner_category_menu_bottom" as="banner_category_menu_bottom" after="navigation.sections">
+                <arguments>
+                    <!-- Menu bottom -->
+                    <argument name="block_position" xsi:type="string">2</argument>
+                    <!-- Category Page -->
+                    <argument name="block_type" xsi:type="string">3</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block class="Aheadworks\Rbslider\Block\Banner" name="banner_category_content_top" as="banner_category_content_top" before="category.products">
+                <arguments>
+                    <!-- Content top -->
+                    <argument name="block_position" xsi:type="string">3</argument>
+                    <!-- Category Page -->
+                    <argument name="block_type" xsi:type="string">3</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="page.bottom">
+            <block class="Aheadworks\Rbslider\Block\Banner" name="banner_category_page_bottom" as="banner_category_content_sidebar_bottom" after="-">
+                <arguments>
+                    <!-- Page bottom -->
+                    <argument name="block_position" xsi:type="string">4</argument>
+                    <!-- Category Page -->
+                    <argument name="block_type" xsi:type="string">3</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

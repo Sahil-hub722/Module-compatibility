@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">aw_rbslider_statistic_grid.aw_rbslider_statistic_grid_data_source</item>
+            <item name="deps" xsi:type="string">aw_rbslider_statistic_grid.aw_rbslider_statistic_grid_data_source</item>
+        </item>
+        <item name="spinner" xsi:type="string">statistic_columns</item>
+        <item name="buttons" xsi:type="array">
+            <item name="add" xsi:type="array"/>
+        </item>
+    </argument>
+    <dataSource name="aw_rbslider_statistic_grid_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">action_log_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>Aheadworks_Rbslider::statistics</aclResource>
+        <dataProvider class="Aheadworks\Rbslider\Ui\DataProvider\Listing\StatisticDataProvider"
+                      name="aw_rbslider_statistic_grid_data_source">
+            <settings>
+                <primaryFieldName>action_log_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="sticky" xsi:type="boolean">true</item>
+            </item>
+        </argument>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="templates" xsi:type="array">
+                        <item name="filters" xsi:type="array">
+                            <item name="select" xsi:type="array">
+                                <item name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</item>
+                                <item name="template" xsi:type="string">ui/grid/filters/elements/ui-select</item>
+                            </item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+            <filterSelect name="banner_id">
+                <argument name="optionsProvider" xsi:type="configurableObject">
+                    <argument name="class" xsi:type="string">Aheadworks\Rbslider\Model\ResourceModel\Banner\Collection</argument>
+                </argument>
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="provider" xsi:type="string">${ $.parentName }</item>
+                        <item name="imports" xsi:type="array">
+                            <item name="visible" xsi:type="string">componentType = column, index = ${ $.index }:visible</item>
+                        </item>
+                        <item name="caption" xsi:type="string" translate="true">Select...</item>
+                        <item name="label" xsi:type="string" translate="true">Banner</item>
+                        <item name="dataScope" xsi:type="string">banner_id</item>
+                    </item>
+                </argument>
+            </filterSelect>
+            <filterSelect name="slide_id">
+                <argument name="optionsProvider" xsi:type="configurableObject">
+                    <argument name="class" xsi:type="string">Aheadworks\Rbslider\Model\ResourceModel\Slide\Collection</argument>
+                </argument>
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="provider" xsi:type="string">${ $.parentName }</item>
+                        <item name="imports" xsi:type="array">
+                            <item name="visible" xsi:type="string">componentType = column, index = ${ $.index }:visible</item>
+                        </item>
+                        <item name="caption" xsi:type="string" translate="true">Select...</item>
+                        <item name="label" xsi:type="string" translate="true">Slide</item>
+                        <item name="dataScope" xsi:type="string">slide_id</item>
+                    </item>
+                </argument>
+            </filterSelect>
+        </filters>
+        <massaction name="listing_massaction">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="selectProvider" xsi:type="string">aw_rbslider_statistic_grid.aw_rbslider_statistic_grid.statistic_columns.ids</item>
+                    <item name="displayArea" xsi:type="string">bottom</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/tree-massactions</item>
+                    <item name="indexField" xsi:type="string">action_log_id</item>
+                </item>
+            </argument>
+            <action name="reset">
+                <argument name="primaryFieldName" xsi:type="string">action_log_id</argument>
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">reset</item>
+                        <item name="label" xsi:type="string" translate="true">Reset statistic</item>
+                        <item name="url" xsi:type="url" path="aw_rbslider_admin/statistic/massReset"/>
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Reset statistic</item>
+                            <item name="message" xsi:type="string" translate="true">Are you sure you wan't to reset statistic for selected elements?</item>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+        </massaction>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="statistic_columns">
+        <selectionsColumn name="ids">
+            <settings>
+                <indexField>action_log_id</indexField>
+            </settings>
+        </selectionsColumn>
+        <column name="thumbnail"
+                class="Aheadworks\Rbslider\Ui\Component\Listing\Columns\Thumbnail"
+                component="Magento_Ui/js/grid/columns/thumbnail"
+                sortOrder="10">
+            <settings>
+                <label translate="true">Thumbnail</label>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+        <column name="slide_name"
+                class="Aheadworks\Rbslider\Ui\Component\Listing\Columns\Name"
+                component="Aheadworks_Rbslider/js/ui/grid/columns/link"
+                sortOrder="20">
+            <settings>
+                <label translate="true">Slide</label>
+            </settings>
+        </column>
+        <column name="banner_name"
+                class="Aheadworks\Rbslider\Ui\Component\Listing\Columns\Name"
+                component="Aheadworks_Rbslider/js/ui/grid/columns/link"
+                sortOrder="30">
+            <settings>
+                <label translate="true">Banner</label>
+            </settings>
+        </column>
+        <column name="view_count"
+                class="Aheadworks\Rbslider\Ui\Component\Listing\Columns\Count"
+                component="Aheadworks_Rbslider/js/ui/grid/columns/link"
+                sortOrder="40">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="aclResource" xsi:type="string">Aheadworks_Rbslider::statistic_reports</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Slider Loadings</label>
+                <filter>textRange</filter>
+            </settings>
+        </column>
+        <column name="click_count"
+                class="Aheadworks\Rbslider\Ui\Component\Listing\Columns\Count"
+                component="Aheadworks_Rbslider/js/ui/grid/columns/link"
+                sortOrder="50">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="aclResource" xsi:type="string">Aheadworks_Rbslider::statistic_reports</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Clicks</label>
+                <filter>textRange</filter>
+            </settings>
+        </column>
+        <column name="ctr" sortOrder="60">
+            <settings>
+                <label translate="true">CTR</label>
+                <filter>textRange</filter>
+            </settings>
+        </column>
+    </columns>
+</listing>

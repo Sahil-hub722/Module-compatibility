@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="page.top">
+            <block class="Aheadworks\Rbslider\Block\Banner" name="banner_home_menu_top" as="banner_home_menu_top" before="navigation.sections">
+                <arguments>
+                    <!-- Menu Top -->
+                    <argument name="block_position" xsi:type="string">1</argument>
+                    <!-- Home Page -->
+                    <argument name="block_type" xsi:type="string">1</argument>
+                </arguments>
+            </block>
+            <block class="Aheadworks\Rbslider\Block\Banner" name="banner_home_menu_bottom" as="banner_home_menu_bottom" after="navigation.sections">
+                <arguments>
+                    <!-- Menu Bottom -->
+                    <argument name="block_position" xsi:type="string">2</argument>
+                    <!-- Home Page -->
+                    <argument name="block_type" xsi:type="string">1</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block class="Aheadworks\Rbslider\Block\Banner" name="banner_home_content_top" as="banner_home_content_top" before="-">
+                <arguments>
+                    <!-- Content Top -->
+                    <argument name="block_position" xsi:type="string">3</argument>
+                    <!-- Home Page -->
+                    <argument name="block_type" xsi:type="string">1</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="page.bottom">
+            <block class="Aheadworks\Rbslider\Block\Banner" name="banner_home_page_bottom" as="banner_home_page_bottom" after="-">
+                <arguments>
+                    <!-- Page Bottom -->
+                    <argument name="block_position" xsi:type="string">4</argument>
+                    <!-- Home Page -->
+                    <argument name="block_type" xsi:type="string">1</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

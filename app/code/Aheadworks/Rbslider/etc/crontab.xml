@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron/etc/crontab.xsd">
+    <group id="default">
+        <job name="aw_rbs_cache" instance="Aheadworks\Rbslider\Cron\RbsCacheProcessor" method="execute">
+            <schedule>*/30 * * * *</schedule>
+        </job>
+        <job name="aw_rbs_status_change" instance="Aheadworks\Rbslider\Cron\RbsStatusProcessor" method="execute">
+            <schedule>*/30 * * * *</schedule>
+        </job>
+    </group>
+</config>

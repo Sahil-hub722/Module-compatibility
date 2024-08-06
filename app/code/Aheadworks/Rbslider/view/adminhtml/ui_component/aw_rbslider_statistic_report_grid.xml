@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">
+                aw_rbslider_statistic_report_grid.aw_rbslider_statistic_report_grid_data_source
+            </item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>aw_rbslider_statistic_report_columns</spinner>
+        <deps>
+            <dep>aw_rbslider_statistic_report_grid.aw_rbslider_statistic_report_grid_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="aw_rbslider_statistic_report_grid_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">action_log_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>Aheadworks_Rbslider::statistic_reports</aclResource>
+        <dataProvider class="Aheadworks\Rbslider\Ui\DataProvider\Listing\StatisticReportDataProvider"
+                      name="aw_rbslider_statistic_report_grid_data_source"/>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <bookmark name="bookmarks" class="Aheadworks\Rbslider\Ui\Component\Listing\Bookmark">
+            <argument name="data" xsi:type="array">
+                <item name="filter_url_params" xsi:type="array">
+                    <item name="banner_id" xsi:type="string">banner_id</item>
+                    <item name="slide_id" xsi:type="string">slide_id</item>
+                    <item name="action_type" xsi:type="string">action_type</item>
+                </item>
+            </argument>
+        </bookmark>
+        <columnsControls name="columns_controls"/>
+        <exportButton name="export_button"/>
+        <filters name="listing_filters">
+            <filterSelect name="banner_id" provider="${ $.parentName }">
+                <settings>
+                    <label translate="true">Banner</label>
+                    <caption translate="true">Select...</caption>
+                    <dataScope>banner_id</dataScope>
+                    <options class="Aheadworks\Rbslider\Model\ResourceModel\Banner\Collection"/>
+                </settings>
+            </filterSelect>
+            <filterSelect name="slide_id" provider="${ $.parentName }">
+                <settings>
+                    <label translate="true">Slide</label>
+                    <caption translate="true">Select...</caption>
+                    <dataScope>slide_id</dataScope>
+                    <options class="Aheadworks\Rbslider\Model\ResourceModel\Slide\Collection"/>
+                </settings>
+            </filterSelect>
+        </filters>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="aw_rbslider_statistic_report_columns">
+        <selectionsColumn name="ids">
+            <settings>
+                <visible>false</visible>
+            </settings>
+        </selectionsColumn>
+        <column name="thumbnail"
+                class="Aheadworks\Rbslider\Ui\Component\Listing\Columns\Thumbnail"
+                component="Magento_Ui/js/grid/columns/thumbnail"
+                sortOrder="10">
+            <settings>
+                <label translate="true">Thumbnail</label>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+        <column name="slide_name"
+                class="Aheadworks\Rbslider\Ui\Component\Listing\Columns\Name"
+                component="Aheadworks_Rbslider/js/ui/grid/columns/link"
+                sortOrder="20">
+            <settings>
+                <label translate="true">Slide</label>
+            </settings>
+        </column>
+        <column name="banner_name"
+                class="Aheadworks\Rbslider\Ui\Component\Listing\Columns\Name"
+                component="Aheadworks_Rbslider/js/ui/grid/columns/link"
+                sortOrder="30">
+            <settings>
+                <label translate="true">Banner</label>
+            </settings>
+        </column>
+        <column name="customer_email"
+                class="Aheadworks\Rbslider\Ui\Component\Listing\Columns\Customer"
+                component="Aheadworks_Rbslider/js/ui/grid/columns/link"
+                sortOrder="40">
+            <settings>
+                <label translate="true">Customer Email</label>
+                <filter>text</filter>
+            </settings>
+        </column>
+        <column name="action_type" component="Magento_Ui/js/grid/columns/select" sortOrder="50">
+            <settings>
+                <label translate="true">Action Type</label>
+                <dataType>select</dataType>
+                <filter>select</filter>
+                <options>
+                    <option name="1" xsi:type="array">
+                        <item name="value" xsi:type="number">1</item>
+                        <item name="label" xsi:type="string" translate="true">View</item>
+                    </option>
+                    <option name="2" xsi:type="array">
+                        <item name="value" xsi:type="number">2</item>
+                        <item name="label" xsi:type="string" translate="true">Click</item>
+                    </option>
+                </options>
+            </settings>
+        </column>
+        <column name="action_count" sortOrder="60">
+            <settings>
+                <label translate="true">Action Count</label>
+                <filter>textRange</filter>
+            </settings>
+        </column>
+        <column name="first_action_time"
+                class="Magento\Ui\Component\Listing\Columns\Date"
+                component="Magento_Ui/js/grid/columns/date"
+                sortOrder="70">
+            <settings>
+                <label translate="true">First Action Time</label>
+                <dataType>date</dataType>
+                <filter>dateRange</filter>
+            </settings>
+        </column>
+        <column name="last_action_time"
+                class="Magento\Ui\Component\Listing\Columns\Date"
+                component="Magento_Ui/js/grid/columns/date"
+                sortOrder="80">
+            <settings>
+                <label translate="true">Last Action Time</label>
+                <dataType>date</dataType>
+                <filter>dateRange</filter>
+            </settings>
+        </column>
+    </columns>
+</listing>

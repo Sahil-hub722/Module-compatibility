@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <type name="Hyva\CompatModuleFallback\Model\CompatModuleRegistry">
+        <arguments>
+            <argument name="compatModules" xsi:type="array">
+                <item name="orig_module_map" xsi:type="array">
+                    <item name="original_module" xsi:type="string">Aheadworks_Rbslider</item>
+                    <item name="compat_module" xsi:type="string">SahilCommerce_HyvaSahil</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>

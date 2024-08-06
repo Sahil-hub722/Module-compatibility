@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="Aheadworks\Rbslider\Ui\Component\MassAction\Status\BannerOptions"
+                 type="Aheadworks\Rbslider\Ui\Component\MassAction\Status\Options">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="urlPath" xsi:type="string">aw_rbslider_admin/banner/massStatus</item>
+                <item name="paramName" xsi:type="string">status</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Aheadworks\Rbslider\Ui\Component\MassAction\Status\SlideOptions"
+                 type="Aheadworks\Rbslider\Ui\Component\MassAction\Status\Options">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="urlPath" xsi:type="string">aw_rbslider_admin/slide/massStatus</item>
+                <item name="paramName" xsi:type="string">status</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Aheadworks\Rbslider\Ui\Component\MassAction\Banner\RemoveFromBannerOptions"
+                 type="Aheadworks\Rbslider\Ui\Component\MassAction\Banner\Options">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="urlPath" xsi:type="string">aw_rbslider_admin/slide/massRemoveFromBanner</item>
+                <item name="paramName" xsi:type="string">banner_id</item>
+                <item name="type" xsi:type="string">remove_from_banner</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Aheadworks\Rbslider\Ui\Component\MassAction\Banner\AddToBannerOptions"
+                 type="Aheadworks\Rbslider\Ui\Component\MassAction\Banner\Options">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="urlPath" xsi:type="string">aw_rbslider_admin/slide/massAddToBanner</item>
+                <item name="paramName" xsi:type="string">banner_id</item>
+                <item name="type" xsi:type="string">add_to_banner</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Aheadworks\Rbslider\Model\ResourceModel\Statistic\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">aw_rbslider_action_log</argument>
+        </arguments>
+    </type>
+    <type name="Aheadworks\Rbslider\Model\ResourceModel\Statistic\Report\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">aw_rbslider_action_log</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="Aheadworks\Rbslider\Ui\DataProvider\Listing\BannerDataProvider"
+                 type="Aheadworks\Rbslider\Ui\DataProvider\Listing\DataProvider"/>
+    <virtualType name="Aheadworks\Rbslider\Ui\DataProvider\Listing\SlideDataProvider"
+                 type="Aheadworks\Rbslider\Ui\DataProvider\Listing\DataProvider">
+        <arguments>
+            <argument name="filterModifiers" xsi:type="array">
+                <item name="display_from" xsi:type="object">
+                    Aheadworks\Rbslider\Ui\DataProvider\Listing\FilterModifier\FormatDate
+                </item>
+                <item name="display_to" xsi:type="object">
+                    Aheadworks\Rbslider\Ui\DataProvider\Listing\FilterModifier\FormatDate
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Aheadworks\Rbslider\Ui\DataProvider\Listing\StatisticDataProvider"
+                 type="Aheadworks\Rbslider\Ui\DataProvider\Listing\DataProvider"/>
+    <virtualType name="Aheadworks\Rbslider\Ui\DataProvider\Listing\StatisticReportDataProvider"
+                 type="Aheadworks\Rbslider\Ui\DataProvider\Listing\DataProvider">
+        <arguments>
+            <argument name="filterModifiers" xsi:type="array">
+                <item name="first_action_time" xsi:type="object">
+                    Aheadworks\Rbslider\Ui\DataProvider\Listing\FilterModifier\FormatDate
+                </item>
+                <item name="last_action_time" xsi:type="object">
+                    Aheadworks\Rbslider\Ui\DataProvider\Listing\FilterModifier\FormatDate
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+</config>

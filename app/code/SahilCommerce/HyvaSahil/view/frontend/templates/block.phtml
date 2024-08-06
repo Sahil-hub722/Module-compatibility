@@ -1,0 +1,234 @@
+<?php
+// @codingStandardsIgnoreFile
+declare(strict_types=1);
+
+
+/** @var \Aheadworks\Rbslider\Block\Banner $block */
+/** @var \Magento\Framework\Escaper $escaper */
+?>
+<script>
+'use strict';
+function initAwsiRbslider(config) {
+    return {
+        options: Object.assign({
+            autoplay: true,
+            pauseTimeBetweenTransitions: 3000,
+            slideTransitionSpeed: 500,
+            isStopAnimationMouseOnBanner: true,
+            animation: 'fade',
+            isRandomOrderImage: false,
+            sliderListSelector: '.uk-slideshow',
+            sliderItemSelector: '.aw-rbslider-item'
+        }, config),
+
+        slideshow: { options: {} },
+
+        initialize() {
+    
+            if (this.options.bannerSchedule.length > 0) {
+                if (!this.timeValidator([this.options.bannerSchedule[0]])) {
+                    this.delayedUpdate(this.options.bannerSchedule[0]);
+                }
+                if (this.timeValidator(this.options.bannerSchedule)) {
+                    this.sendRequest(this.options.bannerId);
+                }
+            }
+            window.initSlider = ()=> this.initSlider();
+        },
+
+        initSlider() {
+            if(!window.awRbslider){
+                let callbacks = [];
+
+                window.awRbslider ={'-isLoading': ()=>callbacks.push(()=> this.initSlider())};
+                const script = document.createElement('script');
+                script.src = '<?= $escaper->escapeJs($block->getViewFileUrl('SahilCommerce_HyvaSahil/js/components/slideshow.js')) ?>';
+                script.onload = () =>{
+                    callbacks.map(callback=>callback())
+                    callbacks = [];
+                };
+                document.head.append(script); 
+            }
+            if(window.awRbslider['-isLoading']){
+                window.awRbslider['-isLoading']();
+            } 
+            if(!window.awRbslider['-isLoading']) {
+                console.log('instantiate slider here');
+            }
+        },
+
+        // Slideshow paused, if mouse cursor on slide navigation or dot navigation
+        pauseOnEnter() {
+            if (this.slideshow.options.pauseOnHover) {
+                this.slideshow.hovering = true;
+            }
+        },
+        resumeOnLeave() {
+            this.slideshow.hovering = false;
+        },
+
+        resizeBanner(slideshow, componentRoot) {
+            const mainContent = componentRoot.closest('#maincontent, .page-wrapper');
+            let width, height = slideshow.options.height;
+
+            // Recalculate width
+            if (slideshow.slides.length) {
+                width = slideshow.slides[0].querySelector('img.aw-rbslider__img').naturalWidth;
+            }
+            if (mainContent) {
+                if (mainContent.getBoundingClientRect().width < width) {
+                    width = mainContent.getBoundingClientRect().width;
+                }
+                componentRoot.style.width = width + 'px';
+            }
+            // Recalculate height
+            if (slideshow.options.height === 'auto' && slideshow.slides.length) {
+                slideshow.slides.forEach(slide => slide.style.height = '');
+                height = slideshow.slides[0].getBoundingClientRect().height;
+                slideshow.container.style.height = height + 'px';
+                slideshow.slides.forEach(slide => {
+                    slide.style.height = height + 'px';
+                    slide.style.position = 'absolute';
+                });
+            }
+        },
+
+        loadSlides(slideshow) {
+            let slideImg;
+
+            slideshow.slides.forEach((slideElem, index) => {
+                if (index) {
+                    slideImg = slideElem.querySelector('img.aw-rbslider__img');
+                    if (slideImg && slideImg.dataset.src) {
+                        slideImg.addEventListener('load', () => slideImg.classList.add('is-loaded'));
+                        slideImg.src = slideImg.dataset.src;
+                        slideImg.removeAttribute('data-src');
+                    }
+                }
+            });
+        },
+
+        timeValidator(schedule) {
+            const currentDateMinute = Date.now() / 1000 / 60;
+            let isValid = false;
+
+            schedule.forEach(item => {
+                if (currentDateMinute === new Date(item).getTime() / 1000 / 60) {
+                    isValid = true;
+                }
+            });
+
+            return isValid;
+        },
+
+        sendRequest(bannerId) {
+            fetch(this.options.cacheCleanUrl, {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ bannerId })
+            });
+        },
+
+        delayedUpdate(futureTime) {
+            const currentDateMinute = Date.now() / 1000 / 60;
+            const interval = (new Date(futureTime).getTime() / 1000 / 60) - currentDateMinute;
+
+            if (interval > 0) {
+                setTimeout(() => this.sendRequest(this.options.bannerId), interval * 60 * 1000);
+            }
+        },
+
+        _randomSort() {
+            const sliderListSelector = this.options.sliderListSelector,
+                sliderItemSelector = this.options.sliderItemSelector;
+
+            this.$el.querySelector(sliderListSelector).innerHTML = Array.from(
+                this.$el.querySelectorAll(sliderListSelector + ' ' + sliderItemSelector)
+            ).sort(() => Math.random() - 0.5)
+            .map(item => item.outerHTML)
+            .join('');
+        }
+    }
+}
+</script>
+<?php if ($bannersBlock = $block->getBlocks()): ?>
+    <?php foreach ($bannersBlock as $bannerBlock) : ?>
+        <?php
+            $dotNavItems = '';
+            $slideCounter = 1;
+            $sliderConfig=$block->getBannerMageInitParams($bannerBlock)['awRbslider'];
+        ?>
+        <div x-data='initAwsiRbslider(<?= /* @noEscape */ $block->jsonEncode($sliderConfig) ?>)'
+            x-init='initialize()'
+            x-intersect.once='initSlider()'
+             data-aw-rbslider-banner-id='<?= /* @noEscape */ $bannerBlock->getBanner()->getId(); ?>'
+             class="aw-rbslider-container uk-slidenav-position">
+            <div class="uk-slideshow uk-overlay-active">
+                
+                <?php foreach ($bannerBlock->getSlides() as $key => $slide) : ?>
+                    <div class="aw-rbslider-item">
+                        <div class="aw-rbslider-img-wrapper">
+                            <picture>
+                                <source media="(max-width: 480px)" srcset="<?= /* @noEscape */ $block->getSlideMobileImgUrl($slide) ?>"
+                                        class="aw-rbslider__img  <?= $slideCounter === 1 ? 'is-loaded' : '' ?>"
+                                        <?= $slideCounter !== 1 ? 'data-' : '' ?>
+                                        title="<?= $escaper->escapeHtml($slide->getImgTitle()) ?>" />
+                                <img class="aw-rbslider__img  <?= $slideCounter === 1 ? 'is-loaded' : '' ?>"
+                                     <?= $slideCounter !== 1 ? 'data-' : '' ?>src="<?= /* @noEscape */ $block->getSlideImgUrl($slide) ?>"
+                                     title="<?= $escaper->escapeHtml($slide->getImgTitle()) ?>"
+                                     alt="<?= $escaper->escapeHtml($slide->getImgAlt()) ?>" />
+                            </picture>
+                            <?php if ($slide->getUrl()): ?>
+                                <?php
+                                    $target = $slide->getIsOpenUrlInNewWindow() ? 'target="_blank"' : '';
+                                    $nofollow = $slide->getIsAddNofollowToUrl() ? 'rel="nofollow"' : '';
+                                ?>
+                                <a href="<?= /* @noEscape */ $slide->getUrl() ?>"
+                                   class="aw-rbslider-img-url"
+                                   data-mage-init='<?= /* @noEscape */ $block->jsonEncode($block->getSendClickStatisticsMageInitParams($bannerBlock->getBanner(), $slide)) ?>'
+                                    <?= /* @noEscape */ $target ?>
+                                    <?= /* @noEscape */ $nofollow ?>></a>
+                            <?php endif; ?>
+                            <?php if ($content = $slide->getContent()): ?>
+                                <div class="aw-rbslider-content-wrapper uk-overlay-panel uk-flex uk-flex-center uk-flex-middle uk-text-center">
+                                    <div>
+                                        <?= /* @noEscape */ $content ?>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <?php $dotNavItems .= '<li data-uk-slideshow-item="' . $key . '"
+                        x-on:[click.uk.slideshow]="slideshow.options.autoplay && slideshow.start()"
+                    ><a href="#"></a></li>' ?>
+                    <?php $slideCounter++; ?>
+                <?php endforeach; ?>
+            </div>
+            <?php if (count($bannerBlock->getSlides()) > 1): ?>
+                <?php if ($bannerBlock->getBanner()->getDisplayArrows()) : ?>
+                    <a href="#"
+                        @mouseenter="pauseOnEnter()" @mouseleave="resumeOnLeave()"
+                       class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous"
+                       x-on:[click.uk.slideshow]="slideshow.options.autoplay && slideshow.start()"
+                       data-uk-slideshow-item="previous">
+                        <span class="visually-hidden"><?= $escaper->escapeHtml(__('Show previous slide')) ?></span>
+                    </a>
+                    <a href="#"
+                       class="uk-slidenav uk-slidenav-contrast uk-slidenav-next"
+                       @mouseenter="pauseOnEnter()" @mouseleave="resumeOnLeave()"
+                       x-on:[click.uk.slideshow]="slideshow.options.autoplay && slideshow.start()"
+                       data-uk-slideshow-item="next">
+                        <span class="visually-hidden"><?= $escaper->escapeHtml(__('Show next slide')) ?></span>
+                    </a>
+                <?php endif; ?>
+                <?php if ($bannerBlock->getBanner()->getDisplayBullets()) : ?>
+                    <ul @mouseenter="pauseOnEnter()" @mouseleave="resumeOnLeave()" class="uk-dotnav uk-dotnav-contrast uk-position-bottom uk-flex-center">
+                        <?= /* @noEscape */  $dotNavItems ?>
+                    </ul>
+                <?php endif; ?>
+            <?php endif; ?>
+        </div>
+    <?php endforeach; ?>
+<?php endif; ?>

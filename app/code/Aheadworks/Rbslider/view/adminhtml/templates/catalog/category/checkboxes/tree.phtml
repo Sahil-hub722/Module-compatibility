@@ -1,0 +1,31 @@
+<?php
+/**
+ * @var $block \Magento\Catalog\Block\Adminhtml\Category\Tree
+ */
+?>
+
+<?php $divId = $block->escapeHtml('tree-div_' . time()) ?>
+<div id="<?= /* @noEscape */ $divId ?>" class="tree"></div>
+<!-- TODO: Replaced default magento template because in version 2.4.4 we got an error due to 'ie-deferred-loader'. Can be removed in the future. -->
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "categoryCheckboxTree": {
+                "dataUrl":       "<?= $block->escapeUrl($block->getLoadTreeUrl()) ?>",
+                "divId":         "<?= /* @noEscape */ $divId ?>",
+                "rootVisible":   false,
+                "useAjax":       <?= $block->escapeHtml($block->getUseAjax()) ?>,
+                "currentNodeId": <?= (int)$block->getCategoryId() ?>,
+                "jsFormObject":  "<?= /* @noEscape */ $block->getJsFormObject() ?>",
+                "name":          "<?= $block->escapeHtml($block->getRoot()->getName()) ?>",
+                "checked":       "<?= $block->escapeHtml($block->getRoot()->getChecked()) ?>",
+                "allowdDrop":    <?= /* @noEscape */ $block->getRoot()->getIsVisible() ? 'true' : 'false' ?>,
+                "rootId":        <?= (int)$block->getRoot()->getId() ?>,
+                "expanded":      true,
+                "categoryId":    <?= (int)$block->getCategoryId() ?>,
+                "treeJson":      <?= /* @noEscape */ $block->getTreeJson() ?>
+            }
+        }
+    }
+</script>

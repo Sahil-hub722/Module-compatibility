@@ -1,0 +1,137 @@
+Back,Back
+Delete,Delete
+"Are you sure you want to do this?","Are you sure you want to do this?"
+Reset,Reset
+Save,Save
+"Save and Continue Edit","Save and Continue Edit"
+"Please specify products where the block should be displayed. Leave blank to display the block on all product pages.","Please specify products where the block should be displayed. Leave blank to display the block on all product pages."
+Conditions,Conditions
+Category,Category
+ID,ID
+Thumbnail,Thumbnail
+Name,Name
+Status,Status
+"Assigned to Banners","Assigned to Banners"
+"Customer Groups","Customer Groups"
+"Store view","Store view"
+"Display From","Display From"
+"Display To","Display To"
+Position,Position
+"Banner was successfully deleted","Banner was successfully deleted"
+"Banner could not be deleted","Banner could not be deleted"
+"Something went wrong while editing the banner","Something went wrong while editing the banner"
+"Edit Banner","Edit Banner"
+"New Banner","New Banner"
+Banners,Banners
+"A total of %1 record(s) were deleted","A total of %1 record(s) were deleted"
+"A total of %1 record(s) have been updated","A total of %1 record(s) have been updated"
+"Banner was successfully saved","Banner was successfully saved"
+"Something went wrong while saving the banner","Something went wrong while saving the banner"
+"Slide was successfully deleted","Slide was successfully deleted"
+"Slide could not be deleted","Slide could not be deleted"
+"Something went wrong while editing the slide","Something went wrong while editing the slide"
+"Edit Slide","Edit Slide"
+"New Slide","New Slide"
+Slides,Slides
+"Slide was successfully saved","Slide was successfully saved"
+"Something went wrong while saving the slide","Something went wrong while saving the slide"
+"Display To cannot be equal or earlier than Display From.","Display To cannot be equal or earlier than Display From."
+Statistics,Statistics
+"A total of %1 record(s) have been removed","A total of %1 record(s) have been removed"
+"Statistic Reports","Statistic Reports"
+"We can't rebuild the index for an undefined entity.","We can't rebuild the index for an undefined entity."
+"Bad value was supplied.","Bad value was supplied."
+"No banners found","No banners found"
+"No slides found","No slides found"
+"Conditions Combination","Conditions Combination"
+"Product Attributes","Product Attributes"
+Slide,Slide
+"Fade Out / In","Fade Out / In"
+Scale,Scale
+"Content top","Content top"
+"Content bottom","Content bottom"
+"Content left","Content left"
+"Content right","Content right"
+"Content center","Content center"
+File,File
+URL,URL
+"Home Page","Home Page"
+"Product Pages","Product Pages"
+"Catalog Pages","Catalog Pages"
+"Custom Widget","Custom Widget"
+"Aheadworks Blog Home Page","Aheadworks Blog Home Page"
+"Menu Top","Menu Top"
+"Menu Bottom","Menu Bottom"
+"Page bottom","Page bottom"
+Enabled,Enabled
+Disabled,Disabled
+Guest,Guest
+"All Store Views","All Store Views"
+"Use same resolution images for best results","Use same resolution images for best results"
+"Show previous slide","Show previous slide"
+"Show next slide","Show next slide"
+"Delete image","Delete image"
+"Aheadworks Rich Banner Slider","Aheadworks Rich Banner Slider"
+"Indexed banner/product association","Indexed banner/product association"
+"Rich Banner Slider by Aheadworks","Rich Banner Slider by Aheadworks"
+"Contents of a Rich Banner Slider","Contents of a Rich Banner Slider"
+Banner,Banner
+"Select Banner...","Select Banner..."
+Readme,Readme
+"Get Support","Get Support"
+"General Information","General Information"
+"Enable Banner","Enable Banner"
+Priority,Priority
+"Where to Display","Where to Display"
+"Layout Position","Layout Position"
+Behaviour,Behaviour
+"Animation Effect","Animation Effect"
+"Pause Time Between Transitions, ms","Pause Time Between Transitions, ms"
+"0 disables automatic rotation","0 disables automatic rotation"
+"Slide Transition Speed, ms","Slide Transition Speed, ms"
+"Stop Animation While Mouse is on the Banner","Stop Animation While Mouse is on the Banner"
+"Display Arrows","Display Arrows"
+"Display Navigation Bullets","Display Navigation Bullets"
+"Display Images in Random Order","Display Images in Random Order"
+"Create New Banner","Create New Banner"
+Select...,Select...
+"Delete banners","Delete banners"
+"Are you sure you wan't to delete selected banners?","Are you sure you wan't to delete selected banners?"
+"Change status","Change status"
+"Assign to Banner(s)","Assign to Banner(s)"
+"Enable Slide","Enable Slide"
+"Store View","Store View"
+"Customer Segments","Customer Segments"
+"Note, segments apply to signed in customers only. Guest visitors will not see slide if any segment is selected.","Note, segments apply to signed in customers only. Guest visitors will not see slide if any segment is selected."
+Image,Image
+"Image Type","Image Type"
+"Desktop Image File","Desktop Image File"
+"Desktop Image Url","Desktop Image Url"
+"Mobile Image File","Mobile Image File"
+"Mobile Image Url","Mobile Image Url"
+"Image Title","Image Title"
+"Image Alt","Image Alt"
+"Overlay Content","Overlay Content"
+"Overlay Position","Overlay Position"
+"URL Options","URL Options"
+"Note: URLs specified in Overlay Content will be disabled by this option","Note: URLs specified in Overlay Content will be disabled by this option"
+"Open URL in New Window","Open URL in New Window"
+"Add 'No follow' to URL","Add 'No follow' to URL"
+"Create New Slide","Create New Slide"
+"Customer Group","Customer Group"
+"Delete slides","Delete slides"
+"Are you sure you wan't to delete selected slides?","Are you sure you wan't to delete selected slides?"
+"Add to Banner","Add to Banner"
+"Remove from Banner","Remove from Banner"
+"Reset statistic","Reset statistic"
+"Are you sure you wan't to reset statistic for selected elements?","Are you sure you wan't to reset statistic for selected elements?"
+"Slider Loadings","Slider Loadings"
+Clicks,Clicks
+CTR,CTR
+"Customer Email","Customer Email"
+"Action Type","Action Type"
+View,View
+Click,Click
+"Action Count","Action Count"
+"First Action Time","First Action Time"
+"Last Action Time","Last Action Time"

@@ -1,0 +1,151 @@
+{
+    "aw_rbslider_banner": {
+        "column": {
+            "id": true,
+            "name": true,
+            "status": true,
+            "page_type": true,
+            "position": true,
+            "product_condition": true,
+            "category_ids": true,
+            "animation_effect": true,
+            "pause_time_between_transitions": true,
+            "slide_transition_speed": true,
+            "is_stop_animation_mouse_on_banner": true,
+            "display_arrows": true,
+            "display_bullets": true,
+            "is_random_order_image": true,
+            "sort_order": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "aw_rbslider_slide": {
+        "column": {
+            "id": true,
+            "name": true,
+            "status": true,
+            "display_from": true,
+            "display_to": true,
+            "img_type": true,
+            "img_file": true,
+            "img_url": true,
+            "img_title": true,
+            "img_alt": true,
+            "url": true,
+            "is_open_url_in_new_window": true,
+            "is_add_nofollow_to_url": true,
+            "content": true,
+            "overlay_position": true,
+            "mobile_img_file": true,
+            "mobile_img_url": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "aw_rbslider_slide_store": {
+        "column": {
+            "slide_id": true,
+            "store_id": true
+        },
+        "index": {
+            "AW_RBSLIDER_SLIDE_STORE_STORE_ID": true
+        },
+        "constraint": {
+            "AW_RBSLIDER_SLIDE_STORE_SLIDE_ID_AW_RBSLIDER_SLIDE_ID": true,
+            "AW_RBSLIDER_SLIDE_STORE_STORE_ID_STORE_STORE_ID": true
+        }
+    },
+    "aw_rbslider_slide_customer_group": {
+        "column": {
+            "slide_id": true,
+            "customer_group_id": true
+        },
+        "index": {
+            "AW_RBSLIDER_SLIDE_CUSTOMER_GROUP_SLIDE_ID": true,
+            "AW_RBSLIDER_SLIDE_CUSTOMER_GROUP_CUSTOMER_GROUP_ID": true
+        },
+        "constraint": {
+            "AW_RBSLIDER_SLIDE_CUSTOMER_GROUP_SLIDE_ID_AW_RBSLIDER_SLIDE_ID": true
+        }
+    },
+    "aw_rbslider_slide_banner": {
+        "column": {
+            "id": true,
+            "slide_id": true,
+            "banner_id": true,
+            "position": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AW_RBSLIDER_SLIDE_BANNER_SLIDE_ID_AW_RBSLIDER_SLIDE_ID": true,
+            "AW_RBSLIDER_SLIDE_BANNER_BANNER_ID_AW_RBSLIDER_BANNER_ID": true
+        }
+    },
+    "aw_rbslider_statistic": {
+        "column": {
+            "id": true,
+            "slide_banner_id": true,
+            "view_count": true,
+            "click_count": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_BE8D97A07EE89C673E4D70D94BFB45CB": true
+        }
+    },
+    "aw_rbslider_action_log": {
+        "column": {
+            "action_log_id": true,
+            "slide_id": true,
+            "banner_id": true,
+            "customer_id": true,
+            "action_type": true,
+            "action_time": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AW_RBSLIDER_ACTION_LOG_SLIDE_ID_AW_RBSLIDER_SLIDE_ID": true,
+            "AW_RBSLIDER_ACTION_LOG_BANNER_ID_AW_RBSLIDER_BANNER_ID": true,
+            "AW_RBSLIDER_ACTION_LOG_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID": true
+        }
+    },
+    "aw_rbslider_banner_product": {
+        "column": {
+            "banner_product_id": true,
+            "banner_id": true,
+            "product_id": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AW_RBSLIDER_BANNER_PRODUCT_BANNER_ID_AW_RBSLIDER_BANNER_ID": true,
+            "AW_RBSLIDER_BANNER_PRD_PRD_ID_CAT_PRD_ENTT_ENTT_ID": true
+        }
+    },
+    "aw_rbslider_banner_product_idx": {
+        "column": {
+            "banner_product_id": true,
+            "banner_id": true,
+            "product_id": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AW_RBSLIDER_BANNER_PRODUCT_IDX_BANNER_ID_AW_RBSLIDER_BANNER_ID": true,
+            "AW_RBSLIDER_BANNER_PRD_IDX_PRD_ID_CAT_PRD_ENTT_ENTT_ID": true
+        }
+    },
+    "aw_rbslider_slide_segment": {
+        "column": {
+            "slide_id": true,
+            "segment_id": true
+        },
+        "index": {
+            "AW_RBSLIDER_SLIDE_SEGMENT_SLIDE_ID_SEGMENT_ID": true
+        },
+        "constraint": {
+            "AW_RBSLIDER_SLIDE_SEGMENT_SLIDE_ID_AW_RBSLIDER_SLIDE_ID": true
+        }
+    }
+}

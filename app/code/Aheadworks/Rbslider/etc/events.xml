@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="aheadworks_rbslider_api_data_bannerinterface_save_after">
+        <observer name="legacy_model_aw_rbslider_banner_after_save" instance="Magento\Framework\EntityManager\Observer\AfterEntitySave" />
+    </event>
+    <event name="aheadworks_rbslider_api_data_bannerinterface_delete_after">
+        <observer name="legacy_model_aw_rbslider_banner_after_delete" instance="Magento\Framework\EntityManager\Observer\AfterEntityDelete" />
+    </event>
+    <event name="aheadworks_rbslider_api_data_slideinterface_save_after">
+        <observer name="legacy_model_aw_rbslider_slide_after_save" instance="Magento\Framework\EntityManager\Observer\AfterEntitySave" />
+    </event>
+    <event name="aheadworks_rbslider_api_data_slideinterface_delete_after">
+        <observer name="legacy_model_aw_rbslider_slide_after_delete" instance="Magento\Framework\EntityManager\Observer\AfterEntityDelete" />
+    </event>
+</config>

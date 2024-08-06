@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Aheadworks_Rbslider::css/rbslider.css"/>
+    </head>
+    <body>
+        <referenceContainer name="page.main.actions">
+            <block class="Aheadworks\Rbslider\Block\Adminhtml\Page\Menu" name="aw_rbslider_menu">
+                <block class="Aheadworks\Rbslider\Block\Adminhtml\Page\Menu\Item"
+                       name="aw_rbslider_menu_item.slides"
+                       aclResource="Aheadworks_Rbslider::slides">
+                    <arguments>
+                        <argument name="label" xsi:type="string" translate="true">Slides</argument>
+                        <argument name="path" xsi:type="string">*/slide/</argument>
+                        <argument name="controller" xsi:type="string">slide</argument>
+                    </arguments>
+                </block>
+                <block class="Aheadworks\Rbslider\Block\Adminhtml\Page\Menu\Item"
+                       name="aw_rbslider_menu_item.banners"
+                       aclResource="Aheadworks_Rbslider::banners">
+                    <arguments>
+                        <argument name="label" xsi:type="string" translate="true">Banners</argument>
+                        <argument name="path" xsi:type="string">*/banner/</argument>
+                        <argument name="controller" xsi:type="string">banner</argument>
+                    </arguments>
+                </block>
+                <block class="Aheadworks\Rbslider\Block\Adminhtml\Page\Menu\Item"
+                       name="aw_rbslider_menu_item.statistics"
+                       aclResource="Aheadworks_Rbslider::statistics">
+                    <arguments>
+                        <argument name="label" xsi:type="string" translate="true">Statistics</argument>
+                        <argument name="path" xsi:type="string">*/statistic/</argument>
+                        <argument name="controller" xsi:type="string">statistic</argument>
+                    </arguments>
+                </block>
+                <block class="Aheadworks\Rbslider\Block\Adminhtml\Page\Menu\Item"
+                       name="aw_rbslider_menu_item.statistic_reports"
+                       aclResource="Aheadworks_Rbslider::statistic_reports">
+                    <arguments>
+                        <argument name="label" xsi:type="string" translate="true">Statistic Reports</argument>
+                        <argument name="path" xsi:type="string">*/statistic_report/</argument>
+                        <argument name="controller" xsi:type="string">statistic_report</argument>
+                    </arguments>
+                </block>
+                <block class="Aheadworks\Rbslider\Block\Adminhtml\Page\Menu\Item" name="aw_rbslider_menu_item.readme">
+                    <arguments>
+                        <argument name="label" xsi:type="string" translate="true">Readme</argument>
+                        <argument name="link_attributes" xsi:type="array">
+                            <item name="href" xsi:type="string">https://aheadworks.com/resources/rich-banner-slider/user-manual-rich-banner-slider</item>
+                            <item name="target" xsi:type="string">_blank</item>
+                            <item name="class" xsi:type="string">separator</item>
+                        </argument>
+                    </arguments>
+                </block>
+                <block class="Aheadworks\Rbslider\Block\Adminhtml\Page\Menu\Item" name="aw_rbslider_menu_item.support">
+                    <arguments>
+                        <argument name="label" xsi:type="string" translate="true">Get Support</argument>
+                        <argument name="link_attributes" xsi:type="array">
+                            <item name="href" xsi:type="string">https://aheadworks.com/contact</item>
+                            <item name="target" xsi:type="string">_blank</item>
+                        </argument>
+                    </arguments>
+                </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>
